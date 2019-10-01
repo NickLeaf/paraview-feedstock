@@ -1,7 +1,12 @@
 #!/bin/sh
 
+echo "PREFIX = ${PREFIX}"
+
 mkdir build && cd build
-cmake -LAH \
+#cmake -LAH \
+#CMAKE_SYSTEM_PREFIX_PATH=/usr/lib/x86_64-linux-gnu cmake -GNinja \
+#cmake -GNinja \
+CMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu cmake -GNinja \
   -DCMAKE_INSTALL_PREFIX=${PREFIX} \
   -DCMAKE_PREFIX_PATH=${PREFIX} \
   -DCMAKE_INSTALL_RPATH:STRING=${PREFIX}/lib \
@@ -22,8 +27,10 @@ cmake -LAH \
   -DVTK_MODULE_USE_EXTERNAL_VTK_utf8=OFF \
   -DPARAVIEW_ENABLE_WEB=ON \
   -DCMAKE_RULE_MESSAGES=OFF \
+  -DBUILD_TESTING=OFF \
+  -DPARAVIEW_ENABLE_EMBEDDED_DOCUMENTATION=OFF \
+  -DVTK_USE_X=OFF \
+  -DVTK_OPENGL_HAS_EGL=ON \
   ..
-make install -j${CPU_COUNT}
-
-
-
+#make install -j${CPU_COUNT}
+ninja install
