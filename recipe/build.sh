@@ -3,9 +3,6 @@
 echo "PREFIX = ${PREFIX}"
 
 mkdir build && cd build
-#cmake -LAH \
-#CMAKE_SYSTEM_PREFIX_PATH=/usr/lib/x86_64-linux-gnu cmake -GNinja \
-#cmake -GNinja \
 CMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu cmake -GNinja \
   -DCMAKE_INSTALL_PREFIX=${PREFIX} \
   -DCMAKE_PREFIX_PATH=${PREFIX} \
@@ -32,5 +29,4 @@ CMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu cmake -GNinja \
   -DVTK_USE_X=OFF \
   -DVTK_OPENGL_HAS_EGL=ON \
   ..
-#make install -j${CPU_COUNT}
 ninja install
